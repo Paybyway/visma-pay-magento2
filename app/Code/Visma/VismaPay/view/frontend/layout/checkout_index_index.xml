@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceBlock name="checkout.root">
+			<arguments>
+				<argument name="jsLayout" xsi:type="array">
+					<item name="components" xsi:type="array">
+						<item name="checkout" xsi:type="array">
+							<item name="children" xsi:type="array">
+								<item name="steps" xsi:type="array">
+									<item name="children" xsi:type="array">
+										<item name="billing-step" xsi:type="array">
+											<item name="children" xsi:type="array">
+												<item name="payment" xsi:type="array">
+													<item name="children" xsi:type="array">
+														<item name="renders" xsi:type="array">
+															<item name="children" xsi:type="array">
+																<item name="visma_pay-payments" xsi:type="array">
+																	<item name="component" xsi:type="string">Visma_VismaPay/js/view/payment/visma_pay</item>
+																	<item name="methods" xsi:type="array">
+																		<item name="visma_pay" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_osuuspankki" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_nordea" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_danskebank" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_spankki" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_aktia" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_handelsbanken" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_alandsbanken" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_paikallisosuuspankki" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_saastopankki" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_omasaastopankki" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_joustoraha" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_laskuyritykselle" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_creditcards" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_mobilepay" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_masterpass" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_pivo" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_siirto" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																	</item>
+																</item>
+															</item>
+														</item>
+													</item>
+												</item>
+											</item>
+										</item>
+									</item>
+								</item>
+							</item>
+						</item>
+					</item>
+				</argument>
+			</arguments>
+		</referenceBlock>
+	</body>
+</page>

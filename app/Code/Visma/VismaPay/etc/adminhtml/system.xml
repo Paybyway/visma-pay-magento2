@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+	<system>
+		<section id="payment">
+		<group id="visma_pay" translate="label" type="text"  sortOrder="700" showInDefault="1" showInWebsite="1" showInStore="1">
+			<label>Visma Pay</label>
+			<field id="active" translate="label"  type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+				<label>Enabled</label>
+				<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+			</field>
+			<field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Title</label>
+			</field>
+			<field id="description" translate="label comment" sortOrder="25" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Description</label>
+                <comment>Optional description for Visma Pay payment method to be shown for customers if Embedded is disabled.</comment>
+            </field>
+			<field id="private_key" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+				<label>Private key</label>
+				<comment>Private key of the sub-merchant.</comment>
+			</field>
+			<field id="api_key" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+				<label>API key</label>
+				<comment>API key of the sub-merchant.</comment>
+			</field>
+			<field id="orderid_prefix" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+				<label>Order number prefix</label>
+				<comment>Prefix to avoid order number duplication.</comment>
+				<validate>validate-alphanum</validate>
+			</field>
+			
+			<field id="send_items" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+				<label>Send products</label>
+				<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				<comment>Send product breakdown to Visma Pay.</comment>
+			</field>
+			<field id="send_receipt" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+				<label>Send payment confirmation</label>
+				<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				<comment>Send Visma Pay's payment confirmation email to the customer's billing e-mail.</comment>
+			</field>
+			<field id="limitcurrency" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+				<label>Only allow payments in EUR</label>
+				<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				<comment>Only payments in EUR are allowed by default. Disable this option to allow payments with other currencies.</comment>
+			</field>
+			<field id="embedded" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+				<label>Enable payment method embedding</label>
+				<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				<comment>Enable this if you want to embed the payment methods to the checkout-page.</comment>
+			</field>
+			<field id="bank_payments" translate="label comment" type="select" sortOrder="112" showInDefault="1" showInWebsite="1" showInStore="0">
+				<label>Banks</label>
+				<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				<comment>Enable bank payments in the Visma Pay payment page.</comment>
+			</field>
+			<field id="creditcards_payments" translate="label comment" type="select" sortOrder="113" showInDefault="1" showInWebsite="1" showInStore="0">
+				<label>Creditcards</label>
+				<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				<comment>Enable credit cards in the Visma Pay payment page.</comment>
+			</field>
+			<field id="invoice_payments" translate="label comment" type="select" sortOrder="114" showInDefault="1" showInWebsite="1" showInStore="0">
+				<label>Credit Invoices</label>
+				<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				<comment>Enable credit invoices in the Visma Pay payment page.</comment>
+			</field>
+			<field id="wallet_payments" translate="label comment" type="select" sortOrder="115" showInDefault="1" showInWebsite="1" showInStore="0">
+				<label>Wallets</label>
+				<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				<comment>Enable wallet services in the Visma Pay payment page.</comment>
+			</field>
+			<field id="laskuyritykselle" translate="label comment" type="select" sortOrder="116" showInDefault="1" showInWebsite="1" showInStore="0">
+				<label>Enterpay-yrityslasku</label>
+				<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				<comment>Enable Enterpay-yrityslasku in the Visma Pay payment page.</comment>
+			</field>
+			
+			<field id="sort_order" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="0">
+				<label>Sort Order</label>
+			</field>
+		</group>
+		</section>
+	</system>
+</config>
