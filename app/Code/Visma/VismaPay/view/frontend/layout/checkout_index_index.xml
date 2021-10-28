@@ -72,6 +72,9 @@
 																		<item name="visma_pay_siirto" xsi:type="array">
 																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
 																		</item>
+																		<item name="visma_pay_fellowfinance" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
 																	</item>
 																</item>
 															</item>

@@ -82,7 +82,7 @@ public function __construct(
 		$wallet_payments = $this->_scopeConfig->getValue('payment/visma_pay/wallet_payments', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 		$laskuyritykselle = $this->_scopeConfig->getValue('payment/visma_pay/laskuyritykselle', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
-		$invoice_methods = array('visma_pay_joustoraha');
+		$invoice_methods = array('visma_pay_joustoraha', 'visma_pay_fellowfinance');
 		$bank_methods = array(
 			'visma_pay_osuuspankki',
 			'visma_pay_nordea',

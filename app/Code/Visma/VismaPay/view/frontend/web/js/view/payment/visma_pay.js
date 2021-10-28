@@ -32,7 +32,8 @@ define(
 				{type: 'visma_pay_mobilepay', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
 				{type: 'visma_pay_masterpass', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
 				{type: 'visma_pay_pivo', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
-				{type: 'visma_pay_siirto', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'}
+				{type: 'visma_pay_siirto', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
+				{type: 'visma_pay_fellowfinance', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'}
 				);
 		}
 		else

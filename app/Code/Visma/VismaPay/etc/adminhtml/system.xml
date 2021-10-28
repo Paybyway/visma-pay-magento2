@@ -71,9 +71,9 @@
 				<comment>Enable wallet services in the Visma Pay payment page.</comment>
 			</field>
 			<field id="laskuyritykselle" translate="label comment" type="select" sortOrder="116" showInDefault="1" showInWebsite="1" showInStore="0">
-				<label>Enterpay-yrityslasku</label>
+				<label>Fellow Yrityslasku</label>
 				<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-				<comment>Enable Enterpay-yrityslasku in the Visma Pay payment page.</comment>
+				<comment>Enable Fellow Yrityslasku in the Visma Pay payment page.</comment>
 			</field>
 			
 			<field id="sort_order" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="0">

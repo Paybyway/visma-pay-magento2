@@ -9,7 +9,7 @@ class Config
 	protected $assetRepo;
 	protected $request;
 
-	protected $plugin_version = "1.0.0";
+	protected $plugin_version = "1.0.1";
 
 	public function __construct(
 		\Magento\Framework\App\Config\ScopeConfigInterface $configInterface,
@@ -79,7 +79,7 @@ class Config
 		if ($bank_payments == 1)  array_push($methods,__("Banks"));
 		if ($creditcards_payments == 1) array_push($methods,__("Creditcards"));
 		if ($invoice_payments == 1) array_push($methods,__("Credit Invoices"));
-		if ($laskuyritykselle == 1) array_push($methods,__("Enterpay-yrityslasku"));
+		if ($laskuyritykselle == 1) array_push($methods,__("Fellow Yrityslasku"));
 		if ($wallet_payments == 1) array_push($methods,__("Wallets"));
 				
 		$string = implode(", ", $methods);
