@@ -37,7 +37,7 @@
 "Only allow payments in EUR", "Salli maksaminen vain euroilla"
 "Only payments in EUR are allowed by default. Disable this option to allow payments with other currencies.", "Maksaminen on normaalisti sallittu vain euroilla. Ota tämä asetus pois käytöstä salliaksesi maksaminen muilla valuutoilla."
 "Banks", "Pankit"
-"Creditcards", "Korttimaksut"
+"Credit cards", "Korttimaksut"
 "Credit Invoices", "Luottolaskut"
 "Wallets", "Lompakot"
 "Enable bank payments in the Visma Pay payment page.", "Ota verkkopankkipainikkeet käyttöön maksusivulla."

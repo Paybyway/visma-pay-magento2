@@ -56,7 +56,7 @@
 				<comment>Enable bank payments in the Visma Pay payment page.</comment>
 			</field>
 			<field id="creditcards_payments" translate="label comment" type="select" sortOrder="113" showInDefault="1" showInWebsite="1" showInStore="0">
-				<label>Creditcards</label>
+				<label>Credit cards</label>
 				<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
 				<comment>Enable credit cards in the Visma Pay payment page.</comment>
 			</field>

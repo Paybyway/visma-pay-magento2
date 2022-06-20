@@ -82,7 +82,12 @@ public function __construct(
 		$wallet_payments = $this->_scopeConfig->getValue('payment/visma_pay/wallet_payments', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 		$laskuyritykselle = $this->_scopeConfig->getValue('payment/visma_pay/laskuyritykselle', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
-		$invoice_methods = array('visma_pay_joustoraha', 'visma_pay_fellowfinance');
+		$invoice_methods = array(
+			'visma_pay_joustoraha',
+			'visma_pay_fellowfinance',
+			'visma_pay_oplasku'
+		);
+		
 		$bank_methods = array(
 			'visma_pay_osuuspankki',
 			'visma_pay_nordea',
@@ -93,7 +98,8 @@ public function __construct(
 			'visma_pay_handelsbanken',
 			'visma_pay_aktia',
 			'visma_pay_saastopankki',
-			'visma_pay_omasaastopankki'
+			'visma_pay_omasaastopankki',
+			'visma_pay_nordeab2b'
 		);
 		
 		$wallet_methods = array(
@@ -226,6 +232,7 @@ public function getCheckoutUrl($order, $storeId = null)
 	$om = \Magento\Framework\App\ObjectManager::getInstance();
 	$resolver = $om->get('Magento\Framework\Locale\Resolver');
 	$lang = substr($resolver->getLocale(),0,2);
+	$limitcurrency = $this->_scopeConfig->getValue('payment/visma_pay/limitcurrency', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 	
 	if(!in_array($lang, array('fi', 'sv', 'en', 'ru')))
 		$lang = "en";
@@ -286,18 +293,14 @@ public function getCheckoutUrl($order, $storeId = null)
 		{
 			if (empty($payment_methods))
 			{
-				$response = $this->getPaymentMethodsForCurrency($currencyCode);
-				if (!$response || empty($response->payment_methods))
+				$response = $this->getPaymentMethodsForCurrency($currency);
+				if (!$response || empty($response['payment_methods']))
 					return array("url" => $this->getFailureUrl());
 				else
-					$payment_methods = json_decode($response->payment_methods);
+					$payment_methods = json_decode($response['payment_methods']);
 				
 				foreach ($payment_methods as $method)
 				{
-					$key = $method->selected_value;
-					if($method->group == 'creditcards')
-						$key = strtolower($method->name);
-
 					if($method->group == 'creditcards'  && $creditcards_payments == 1)
 					{
 						$selected[] = $method->group; //creditcards

@@ -33,7 +33,7 @@
 			</visma_pay_fellowfinance>
 			<visma_pay_creditcards>
 				<active>1</active>
-				<title>Creditcards</title>
+				<title>Credit cards</title>
 				<order_status>pending_payment</order_status>
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPayCreditcards</model>
@@ -166,6 +166,15 @@
 				<sort_order>116</sort_order>
 				<min_order_total>0.01</min_order_total>
 			</visma_pay_alandsbanken>
+			<visma_pay_nordeab2b>
+				<active>1</active>
+				<title>Nordea B2B</title>
+				<order_status>pending_payment</order_status>
+				<payment_action>Sale</payment_action>
+				<model>Visma\VismaPay\Model\VismaPayNordeab2b</model>
+				<sort_order>117</sort_order>
+				<min_order_total>0.01</min_order_total>
+			</visma_pay_nordeab2b>
 			<visma_pay_joustoraha>
 				<active>1</active>
 				<title>Jousto</title>
@@ -174,7 +183,7 @@
 				<model>Visma\VismaPay\Model\VismaPayJousto</model>
 				<min_order_total>20.00</min_order_total>
 				<max_order_total>5000.00</max_order_total>
-				<sort_order>117</sort_order>
+				<sort_order>118</sort_order>
 			</visma_pay_joustoraha>
 			<visma_pay_laskuyritykselle>
 				<active>1</active>
@@ -185,6 +194,16 @@
 				<sort_order>119</sort_order>
 				<min_order_total>0.01</min_order_total>
 			</visma_pay_laskuyritykselle>
+			<visma_pay_oplasku>
+				<active>1</active>
+				<title>OP Lasku</title>
+				<order_status>pending_payment</order_status>
+				<payment_action>Sale</payment_action>
+				<model>Visma\VismaPay\Model\VismaPayOPLasku</model>
+				<sort_order>120</sort_order>
+				<min_order_total>0.01</min_order_total>
+				<max_order_total>5000.00</max_order_total>
+			</visma_pay_oplasku>
 		</payment>
 	</default>
 </config>

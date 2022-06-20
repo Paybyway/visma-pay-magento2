@@ -26,6 +26,7 @@ define(
 				{type: 'visma_pay_spankki', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
 				{type: 'visma_pay_saastopankki', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
 				{type: 'visma_pay_omasaastopankki', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
+				{type: 'visma_pay_nordeab2b', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
 				{type: 'visma_pay_joustoraha', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
 				{type: 'visma_pay_laskuyritykselle', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
 				{type: 'visma_pay_creditcards', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
@@ -33,7 +34,8 @@ define(
 				{type: 'visma_pay_masterpass', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
 				{type: 'visma_pay_pivo', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
 				{type: 'visma_pay_siirto', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
-				{type: 'visma_pay_fellowfinance', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'}
+				{type: 'visma_pay_fellowfinance', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
+				{type: 'visma_pay_oplasku', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'}
 				);
 		}
 		else
