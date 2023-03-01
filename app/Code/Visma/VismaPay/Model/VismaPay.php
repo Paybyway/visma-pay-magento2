@@ -143,8 +143,13 @@ public function canUseForCurrency($currencyCode)
 
 public function checkIfAvailable($currencyCode)
 {
-	$payment_methods = json_decode($this->_checkoutSession->getData('payment_methods'));
-	
+	$payment_methods = array();
+	$session_paymethods = $this->_checkoutSession->getData('payment_methods');
+	if (!is_null($session_paymethods))
+	{
+		$payment_methods = json_decode($session_paymethods);
+	}
+
 	if (empty($payment_methods) && $this->_code == 'visma_pay')
 	{
 		$response = $this->getPaymentMethodsForCurrency($currencyCode);
