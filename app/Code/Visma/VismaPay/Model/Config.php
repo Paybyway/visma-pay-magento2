@@ -9,7 +9,7 @@ class Config
 	protected $assetRepo;
 	protected $request;
 
-	protected $plugin_version = "1.0.2";
+	protected $plugin_version = "1.0.3";
 
 	public function __construct(
 		\Magento\Framework\App\Config\ScopeConfigInterface $configInterface,
