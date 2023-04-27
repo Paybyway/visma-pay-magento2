@@ -22,22 +22,13 @@
 				<send_items>1</send_items>
 				<send_receipt>1</send_receipt>
 			</visma_pay>
-			<visma_pay_fellowfinance>
-				<active>1</active>
-				<title>Fellow Lasku</title>
-				<order_status>pending_payment</order_status>
-				<payment_action>Sale</payment_action>
-				<model>Visma\VismaPay\Model\VismaPayFellowfinance</model>
-				<min_order_total>0.01</min_order_total>
-				<sort_order>101</sort_order>
-			</visma_pay_fellowfinance>
 			<visma_pay_creditcards>
 				<active>1</active>
 				<title>Credit cards</title>
 				<order_status>pending_payment</order_status>
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPayCreditcards</model>
-				<sort_order>102</sort_order>
+				<sort_order>101</sort_order>
 				<min_order_total>0.01</min_order_total>
 			</visma_pay_creditcards>
 			<visma_pay_mobilepay>
@@ -47,7 +38,7 @@
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPayMobilepay</model>
 				<min_order_total>0.01</min_order_total>
-				<sort_order>103</sort_order>
+				<sort_order>102</sort_order>
 			</visma_pay_mobilepay>
 			<visma_pay_masterpass>
 				<active>1</active>
@@ -56,7 +47,7 @@
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPayMasterpass</model>
 				<min_order_total>0.01</min_order_total>
-				<sort_order>104</sort_order>
+				<sort_order>103</sort_order>
 			</visma_pay_masterpass>
 			<visma_pay_pivo>
 				<active>1</active>
@@ -65,7 +56,7 @@
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPayPivo</model>
 				<min_order_total>0.01</min_order_total>
-				<sort_order>105</sort_order>
+				<sort_order>104</sort_order>
 			</visma_pay_pivo>
 			<visma_pay_siirto>
 				<active>1</active>
@@ -74,7 +65,7 @@
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPaySiirto</model>
 				<min_order_total>0.01</min_order_total>
-				<sort_order>106</sort_order>
+				<sort_order>105</sort_order>
 			</visma_pay_siirto>
 			<visma_pay_aktia>
 				<active>1</active>
@@ -82,7 +73,7 @@
 				<order_status>pending_payment</order_status>
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPayAktia</model>
-				<sort_order>107</sort_order>
+				<sort_order>106</sort_order>
 				<min_order_total>0.01</min_order_total>
 			</visma_pay_aktia>
 			<visma_pay_danskebank>
@@ -92,7 +83,7 @@
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPayDanskebank</model>
 				<min_order_total>0.01</min_order_total>
-				<sort_order>108</sort_order>
+				<sort_order>107</sort_order>
 			</visma_pay_danskebank>
 			<visma_pay_handelsbanken>
 				<active>1</active>
@@ -100,7 +91,7 @@
 				<order_status>pending_payment</order_status>
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPayHandelsbanken</model>
-				<sort_order>109</sort_order>
+				<sort_order>108</sort_order>
 				<min_order_total>0.01</min_order_total>
 			</visma_pay_handelsbanken>
 			<visma_pay_nordea>
@@ -109,7 +100,7 @@
 				<order_status>pending_payment</order_status>
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPayNordea</model>
-				<sort_order>110</sort_order>
+				<sort_order>109</sort_order>
 				<min_order_total>0.01</min_order_total>
 			</visma_pay_nordea>
 			<visma_pay_omasaastopankki>
@@ -118,7 +109,7 @@
 				<order_status>pending_payment</order_status>
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPayOmasaastopankki</model>
-				<sort_order>111</sort_order>
+				<sort_order>110</sort_order>
 				<min_order_total>0.01</min_order_total>
 			</visma_pay_omasaastopankki>
 			<visma_pay_osuuspankki>
@@ -127,7 +118,7 @@
 				<order_status>pending_payment</order_status>
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPayOsuuspankki</model>
-				<sort_order>112</sort_order>
+				<sort_order>111</sort_order>
 				<min_order_total>0.01</min_order_total>
 			</visma_pay_osuuspankki>
 			<visma_pay_paikallisosuuspankki>
@@ -136,7 +127,7 @@
 				<order_status>pending_payment</order_status>
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPayPoppankki</model>
-				<sort_order>113</sort_order>
+				<sort_order>112</sort_order>
 				<min_order_total>0.01</min_order_total>
 			</visma_pay_paikallisosuuspankki>
 			<visma_pay_saastopankki>
@@ -145,7 +136,7 @@
 				<order_status>pending_payment</order_status>
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPaySaastopankki</model>
-				<sort_order>114</sort_order>
+				<sort_order>113</sort_order>
 				<min_order_total>0.01</min_order_total>
 			</visma_pay_saastopankki>
 			<visma_pay_spankki>
@@ -154,7 +145,7 @@
 				<order_status>pending_payment</order_status>
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPaySpankki</model>
-				<sort_order>115</sort_order>
+				<sort_order>114</sort_order>
 				<min_order_total>0.01</min_order_total>
 			</visma_pay_spankki>
 			<visma_pay_alandsbanken>
@@ -163,7 +154,7 @@
 				<order_status>pending_payment</order_status>
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPayAlandsbanken</model>
-				<sort_order>116</sort_order>
+				<sort_order>115</sort_order>
 				<min_order_total>0.01</min_order_total>
 			</visma_pay_alandsbanken>
 			<visma_pay_nordeab2b>
@@ -172,7 +163,7 @@
 				<order_status>pending_payment</order_status>
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPayNordeab2b</model>
-				<sort_order>117</sort_order>
+				<sort_order>116</sort_order>
 				<min_order_total>0.01</min_order_total>
 			</visma_pay_nordeab2b>
 			<visma_pay_joustoraha>
@@ -183,27 +174,36 @@
 				<model>Visma\VismaPay\Model\VismaPayJousto</model>
 				<min_order_total>20.00</min_order_total>
 				<max_order_total>5000.00</max_order_total>
-				<sort_order>118</sort_order>
+				<sort_order>117</sort_order>
 			</visma_pay_joustoraha>
-			<visma_pay_laskuyritykselle>
-				<active>1</active>
-				<title>Fellow Yrityslasku</title>
-				<order_status>pending_payment</order_status>
-				<payment_action>Sale</payment_action>
-				<model>Visma\VismaPay\Model\VismaPayLaskuyritykselle</model>
-				<sort_order>119</sort_order>
-				<min_order_total>0.01</min_order_total>
-			</visma_pay_laskuyritykselle>
 			<visma_pay_oplasku>
 				<active>1</active>
 				<title>OP Lasku</title>
 				<order_status>pending_payment</order_status>
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPayOPLasku</model>
-				<sort_order>120</sort_order>
+				<sort_order>118</sort_order>
 				<min_order_total>0.01</min_order_total>
 				<max_order_total>5000.00</max_order_total>
 			</visma_pay_oplasku>
+			<visma_pay_fellowfinance>
+				<active>1</active>
+				<title>Alisa Lasku</title>
+				<order_status>pending_payment</order_status>
+				<payment_action>Sale</payment_action>
+				<model>Visma\VismaPay\Model\VismaPayFellowfinance</model>
+				<min_order_total>0.01</min_order_total>
+				<sort_order>119</sort_order>
+			</visma_pay_fellowfinance>
+			<visma_pay_laskuyritykselle>
+				<active>1</active>
+				<title>Alisa Yrityslasku</title>
+				<order_status>pending_payment</order_status>
+				<payment_action>Sale</payment_action>
+				<model>Visma\VismaPay\Model\VismaPayLaskuyritykselle</model>
+				<sort_order>120</sort_order>
+				<min_order_total>0.01</min_order_total>
+			</visma_pay_laskuyritykselle>
 		</payment>
 	</default>
 </config>
