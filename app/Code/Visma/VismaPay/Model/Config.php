@@ -8,8 +8,9 @@ class Config
 	protected $gateway_url = "https://www.vismapay.com/";
 	protected $assetRepo;
 	protected $request;
-
-	protected $plugin_version = "1.0.4";
+	protected $_checkoutSession;
+	protected $sessionQuote;
+	protected $plugin_version = "1.0.5";
 
 	public function __construct(
 		\Magento\Framework\App\Config\ScopeConfigInterface $configInterface,
