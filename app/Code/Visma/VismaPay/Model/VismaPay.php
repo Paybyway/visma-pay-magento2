@@ -231,7 +231,7 @@ public function getCheckoutUrl($order, $storeId = null)
 		
 	$vp_auth_url = $this->config->getAuthUrl();
 	$vp_token_url = $this->config->getTokenUrl();
-	$version = "w3.1";
+	$version = "w3.2";
 	$amount = (int) round($order->getBaseGrandTotal() * 100);
 	$currency = $this->_storeManager->getStore()->getBaseCurrency()->getCode();
 	$om = \Magento\Framework\App\ObjectManager::getInstance();
@@ -335,7 +335,9 @@ public function getCheckoutUrl($order, $storeId = null)
 
 	if (count($selected) > 0)
 		$payment_method["selected"] = $selected;
-	$shipping_tax_percent = ($order->getBaseShippingAmount() == 0) ? 0 : round(100 * ($order->getBaseShippingTaxAmount() / $order->getBaseShippingAmount()));
+	
+	$shipping_tax_percent = ($order->getBaseShippingAmount() == 0) ? 0 : 100 * ($order->getBaseShippingTaxAmount() / $order->getBaseShippingAmount());
+
 	$products = array();
 	$product_amount = 0;
 	$send_items = $this->getConfigData('send_items');
@@ -343,51 +345,71 @@ public function getCheckoutUrl($order, $storeId = null)
 	{
 		foreach ($order->getAllVisibleItems() as $item) 
 		{
-			$item_tax_percent = ($item->getProduct()->getTypeID() == 'bundle' && $item->getBasePrice() != 0) ? round(100 * (($item->getBasePriceInclTax() - $item->getBasePrice()) / $item->getBasePrice())) : $item->getTaxPercent();
 			$product = array(
 				'title' => $item->getName(),
 				'id' => $item->getSku(),
 				'count' => (int)$item->getQtyOrdered(),
 				'pretax_price' => (int)(round($item->getBasePrice()*100)),
 				'price' => (int)(round($item->getBasePriceInclTax()*100)),
-				'tax' => (int)$item_tax_percent,
+				'tax' => number_format($item->getTaxPercent(), 2, '.', ''),
 				'type' => 1
 			);
+
 			$product_amount += $product['price'] * $product['count'];
 			array_push($products, $product);
 		}
+
 		if ($order->getBaseDiscountAmount() != 0)
 		{
 			$discount_pretax = -1 * (abs($order->getBaseDiscountAmount()) - abs($order->getBaseDiscountTaxCompensationAmount()));
-			$discount_tax_pct = ($discount_pretax == 0) ? 0 : round(100 * (abs($order->getBaseDiscountTaxCompensationAmount()) / abs($discount_pretax)));
+			$discount_tax_pct = ($discount_pretax == 0) ? 0 : 100 * (abs($order->getBaseDiscountTaxCompensationAmount()) / abs($discount_pretax));
+
 			$product = array(
 				'title' => $order->getDiscountDescription(),
 				'id' => "discount",
 				'count' => 1,
 				'pretax_price' => (int)(round($discount_pretax*100)),
 				'price' => (int)(round($order->getBaseDiscountAmount()*100)),
-				'tax' => (int)$discount_tax_pct,
+				'tax' => number_format($discount_tax_pct, 1, '.', ''),
 				'type' => 4
 			);
+
 			$product_amount += $product['price'];
 			array_push($products, $product);
-
 		}
+
 		if ($order->getShippingDescription() !== NULL)
 		{
+			$tax_items = $om->create('\Magento\Sales\Model\ResourceModel\Order\Tax\Item');
+			$order_tax_items = $tax_items->getTaxItemsByOrderId($order->getId());
+
+			if (is_array($order_tax_items))
+			{
+				foreach ($order_tax_items as $tax_item)
+				{
+					if ($tax_item['taxable_item_type'] === 'shipping')
+					{
+						$shipping_tax_percent = number_format($tax_item['tax_percent'], 2, '.', '');
+						break;
+					}
+				}
+			}
+
 			$product = array(
 				'title' => $order->getShippingDescription(),
 				'id' => $order->getShippingMethod(),
 				'count' => 1,
 				'pretax_price' => (int)(round($order->getBaseShippingAmount()*100)),
 				'price' => (int)(round($order->getBaseShippingInclTax()*100)),
-				'tax' => (int)$shipping_tax_percent,
+				'tax' => $shipping_tax_percent,
 				'type' => 2
 			);
+
 			$product_amount += $product['price'];
 			array_push($products, $product);
 		}
 	}
+
 	$authCode = strtoupper(hash_hmac('sha256', $api_key . "|" . $vp_order_id, $private_key));
 	$data = array(
 		'version' => $version,
@@ -404,7 +426,8 @@ public function getCheckoutUrl($order, $storeId = null)
 
 	$customer_data = $order->getBillingAddress();
 	$customer_shipping_data = $order->getShippingAddress();
-	
+	$customer_phone = $customer_data->getTelephone();
+
 	$customer_info = array(
 		'firstname' => $customer_data->getFirstname(),
 		'lastname' => $customer_data->getLastname(), 
@@ -412,7 +435,8 @@ public function getCheckoutUrl($order, $storeId = null)
 		'address_street' => $customer_data->getStreetLine(1),
 		'address_city' => $customer_data->getCity(),
 		'address_zip' => $customer_data->getPostcode(),
-		'address_country' => $customer_data->getCountryId()
+		'address_country' => $customer_data->getCountryId(),
+		'phone' => preg_replace('/[^0-9+ ]/', '', (string) $customer_phone)
 	);
 
 	if($customer_shipping_data)

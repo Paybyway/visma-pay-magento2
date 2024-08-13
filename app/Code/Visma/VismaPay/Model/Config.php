@@ -10,7 +10,7 @@ class Config
 	protected $request;
 	protected $_checkoutSession;
 	protected $sessionQuote;
-	protected $plugin_version = "1.0.5";
+	protected $plugin_version = "1.0.6";
 
 	public function __construct(
 		\Magento\Framework\App\Config\ScopeConfigInterface $configInterface,

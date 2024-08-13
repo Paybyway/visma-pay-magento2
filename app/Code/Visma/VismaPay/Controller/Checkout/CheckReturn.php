@@ -244,7 +244,7 @@ class CheckReturn extends \Magento\Framework\App\Action\Action
 
 		$authCode = strtoupper(hash_hmac('sha256', $merchantApiKey . "|" . $vp_order_number, $merchantPrivateKey));
 
-		$data = array('version' => 'w3.1', 'api_key' => $merchantApiKey, 'order_number' => $vp_order_number, 'authcode' => $authCode);
+		$data = array('version' => 'w3.2', 'api_key' => $merchantApiKey, 'order_number' => $vp_order_number, 'authcode' => $authCode);
 		$ctype = array('Content-Type: application/json', 'Content-Length: ' . strlen(json_encode($data)));
 		try
 		{
