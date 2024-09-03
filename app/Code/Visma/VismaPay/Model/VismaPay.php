@@ -341,22 +341,56 @@ public function getCheckoutUrl($order, $storeId = null)
 	$products = array();
 	$product_amount = 0;
 	$send_items = $this->getConfigData('send_items');
+
 	if ($send_items == 1)
 	{
-		foreach ($order->getAllVisibleItems() as $item) 
-		{
-			$product = array(
-				'title' => $item->getName(),
-				'id' => $item->getSku(),
-				'count' => (int)$item->getQtyOrdered(),
-				'pretax_price' => (int)(round($item->getBasePrice()*100)),
-				'price' => (int)(round($item->getBasePriceInclTax()*100)),
-				'tax' => number_format($item->getTaxPercent(), 2, '.', ''),
-				'type' => 1
-			);
+		$all_items = $order->getAllVisibleItems();
 
-			$product_amount += $product['price'] * $product['count'];
-			array_push($products, $product);
+		foreach ($all_items as $item)
+		{
+			$is_bundle = $item->getProductType() === \Magento\Catalog\Model\Product\Type::TYPE_BUNDLE;
+			$is_dynamic_bundle = false;
+
+			if ($is_bundle) 
+			{
+				$product = $item->getProduct();
+				$is_dynamic_bundle = $product->getPriceType() == \Magento\Bundle\Model\Product\Price::PRICE_TYPE_DYNAMIC;
+			}
+
+			if ($is_dynamic_bundle)
+			{
+				$children = $item->getChildrenItems();
+				foreach ($children as $child)
+				{
+					$product = array(
+						'title' => $child->getName(),
+						'id' => $child->getSku(),
+						'count' => (int)$child->getQtyOrdered(),
+						'pretax_price' => (int)(round($child->getBasePrice()*100)),
+						'price' => (int)(round($child->getBasePriceInclTax()*100)),
+						'tax' => number_format((float) $child->getTaxPercent(), 2, '.', ''),
+						'type' => 1
+					);
+
+					$product_amount += $product['price'] * $product['count'];
+					array_push($products, $product);
+				}
+			}
+			else
+			{
+				$product = array(
+					'title' => $item->getName(),
+					'id' => $item->getSku(),
+					'count' => (int)$item->getQtyOrdered(),
+					'pretax_price' => (int)(round($item->getBasePrice()*100)),
+					'price' => (int)(round($item->getBasePriceInclTax()*100)),
+					'tax' => number_format((float) $item->getTaxPercent(), 2, '.', ''),
+					'type' => 1
+				);
+
+				$product_amount += $product['price'] * $product['count'];
+				array_push($products, $product);
+			}
 		}
 
 		if ($order->getBaseDiscountAmount() != 0)
