@@ -80,10 +80,8 @@ public function __construct(
 		$creditcards_payments = $this->_scopeConfig->getValue('payment/visma_pay/creditcards_payments', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 		$invoice_payments = $this->_scopeConfig->getValue('payment/visma_pay/invoice_payments', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 		$wallet_payments = $this->_scopeConfig->getValue('payment/visma_pay/wallet_payments', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-		$laskuyritykselle = $this->_scopeConfig->getValue('payment/visma_pay/laskuyritykselle', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
 		$invoice_methods = array(
-			'visma_pay_joustoraha',
 			'visma_pay_fellowfinance',
 			'visma_pay_oplasku'
 		);
@@ -99,13 +97,13 @@ public function __construct(
 			'visma_pay_aktia',
 			'visma_pay_saastopankki',
 			'visma_pay_omasaastopankki',
-			'visma_pay_nordeab2b'
+			'visma_pay_nordeab2b',
+			'visma_pay_danskebankb2b'
 		);
 		
 		$wallet_methods = array(
 			'visma_pay_mobilepay',
 			'visma_pay_masterpass',
-			'visma_pay_pivo',
 			'visma_pay_siirto'
 		);
 
@@ -114,8 +112,6 @@ public function __construct(
 			if(in_array($this->_code, $invoice_methods) && $invoice_payments != 1)
 				return false;
 			else if($this->_code == 'visma_pay_creditcards' && $creditcards_payments != 1)
-				return false;
-			else if($this->_code == 'visma_pay_laskuyritykselle' && $laskuyritykselle != 1)
 				return false;
 			else if(in_array($this->_code, $bank_methods) && $bank_payments != 1)
 				return false;
@@ -248,7 +244,6 @@ public function getCheckoutUrl($order, $storeId = null)
 	$creditcards_payments = $this->getConfigData('creditcards_payments');
 	$invoice_payments = $this->getConfigData('invoice_payments');
 	$wallet_payments = $this->getConfigData('wallet_payments');
-	$laskuyritykselle = $this->getConfigData('laskuyritykselle');
 	$orderid_prefix = $this->getConfigData('orderid_prefix');
 	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 	$productMetadata = $objectManager->get('Magento\Framework\App\ProductMetadataInterface');
@@ -291,8 +286,6 @@ public function getCheckoutUrl($order, $storeId = null)
 				array_push($selected,"banks");
 			if ($invoice_payments == 1)
 				array_push($selected,"creditinvoices");
-			if ($laskuyritykselle == 1)
-				array_push($selected,"laskuyritykselle");
 		}
 		else if($limitcurrency == 0)
 		{
@@ -318,12 +311,9 @@ public function getCheckoutUrl($order, $storeId = null)
 					{
 						$selected[] = $method->selected_value;
 					}
-					else if($method->group == 'creditinvoices')
+					else if($method->group == 'creditinvoices' && $invoice_payments == 1)
 					{
-						if($method->selected_value == 'laskuyritykselle' && $laskuyritykselle == 1)
-							$selected[] = $method->selected_value;
-						else if($invoice_payments == 1)
-							$selected[] = $method->selected_value;
+						$selected[] = $method->selected_value;
 					}
 				}
 			}

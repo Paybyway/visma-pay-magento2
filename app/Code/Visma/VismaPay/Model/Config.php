@@ -10,7 +10,7 @@ class Config
 	protected $request;
 	protected $_checkoutSession;
 	protected $sessionQuote;
-	protected $plugin_version = "1.0.7";
+	protected $plugin_version = "1.0.8";
 
 	public function __construct(
 		\Magento\Framework\App\Config\ScopeConfigInterface $configInterface,
@@ -72,7 +72,6 @@ class Config
 		$bank_payments = $this->_scopeConfigInterface->getValue('payment/visma_pay/bank_payments');
 		$creditcards_payments = $this->_scopeConfigInterface->getValue('payment/visma_pay/creditcards_payments');
 		$invoice_payments = $this->_scopeConfigInterface->getValue('payment/visma_pay/invoice_payments');
-		$laskuyritykselle = $this->_scopeConfigInterface->getValue('payment/visma_pay/laskuyritykselle');
 		$wallet_payments = $this->_scopeConfigInterface->getValue('payment/visma_pay/wallet_payments');
 
 		$methods = array();
@@ -80,7 +79,6 @@ class Config
 		if ($bank_payments == 1)  array_push($methods,__("Banks"));
 		if ($creditcards_payments == 1) array_push($methods,__("Credit cards"));
 		if ($invoice_payments == 1) array_push($methods,__("Credit Invoices"));
-		if ($laskuyritykselle == 1) array_push($methods,__("Alisa Yrityslasku"));
 		if ($wallet_payments == 1) array_push($methods,__("Wallets"));
 				
 		$string = implode(", ", $methods);

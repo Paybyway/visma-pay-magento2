@@ -70,11 +70,6 @@
 				<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
 				<comment>Enable wallet services in the Visma Pay payment page.</comment>
 			</field>
-			<field id="laskuyritykselle" translate="label comment" type="select" sortOrder="116" showInDefault="1" showInWebsite="1" showInStore="0">
-				<label>Alisa Yrityslasku</label>
-				<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-				<comment>Enable Alisa Yrityslasku in the Visma Pay payment page.</comment>
-			</field>
 			
 			<field id="sort_order" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="0">
 				<label>Sort Order</label>

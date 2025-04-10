@@ -54,10 +54,7 @@
 																		<item name="visma_pay_nordeab2b" xsi:type="array">
 																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
 																		</item>
-																		<item name="visma_pay_joustoraha" xsi:type="array">
-																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
-																		</item>
-																		<item name="visma_pay_laskuyritykselle" xsi:type="array">
+																		<item name="visma_pay_danskebankb2b" xsi:type="array">
 																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
 																		</item>
 																		<item name="visma_pay_creditcards" xsi:type="array">
@@ -67,9 +64,6 @@
 																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
 																		</item>
 																		<item name="visma_pay_masterpass" xsi:type="array">
-																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
-																		</item>
-																		<item name="visma_pay_pivo" xsi:type="array">
 																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
 																		</item>
 																		<item name="visma_pay_siirto" xsi:type="array">
