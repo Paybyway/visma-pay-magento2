@@ -20,6 +20,7 @@
 				<wallet_payments>1</wallet_payments>
 				<send_items>1</send_items>
 				<send_receipt>1</send_receipt>
+				<group>vismapay</group>
 			</visma_pay>
 			<visma_pay_creditcards>
 				<active>1</active>
@@ -29,6 +30,7 @@
 				<model>Visma\VismaPay\Model\VismaPayCreditcards</model>
 				<sort_order>112</sort_order>
 				<min_order_total>0.01</min_order_total>
+				<group>vismapay</group>
 			</visma_pay_creditcards>
 			<visma_pay_mobilepay>
 				<active>1</active>
@@ -38,16 +40,38 @@
 				<model>Visma\VismaPay\Model\VismaPayMobilepay</model>
 				<min_order_total>0.01</min_order_total>
 				<sort_order>113</sort_order>
+				<group>vismapay</group>
 			</visma_pay_mobilepay>
-			<visma_pay_masterpass>
+			<visma_pay_applepay>
 				<active>1</active>
-				<title>Masterpass</title>
+				<title>Apple Pay</title>
 				<order_status>pending_payment</order_status>
 				<payment_action>Sale</payment_action>
-				<model>Visma\VismaPay\Model\VismaPayMasterpass</model>
+				<model>Visma\VismaPay\Model\VismaPayApplePay</model>
 				<min_order_total>0.01</min_order_total>
 				<sort_order>114</sort_order>
-			</visma_pay_masterpass>
+				<group>vismapay</group>
+			</visma_pay_applepay>
+			<visma_pay_googlepay>
+				<active>1</active>
+				<title>Google Pay</title>
+				<order_status>pending_payment</order_status>
+				<payment_action>Sale</payment_action>
+				<model>Visma\VismaPay\Model\VismaPayGooglePay</model>
+				<min_order_total>0.01</min_order_total>
+				<sort_order>115</sort_order>
+				<group>vismapay</group>
+			</visma_pay_googlepay>
+			<visma_pay_klarna>
+				<active>1</active>
+				<title>Klarna</title>
+				<order_status>pending_payment</order_status>
+				<payment_action>Sale</payment_action>
+				<model>Visma\VismaPay\Model\VismaPayKlarna</model>
+				<min_order_total>0.01</min_order_total>
+				<sort_order>116</sort_order>
+				<group>vismapay</group>
+			</visma_pay_klarna>
 			<visma_pay_siirto>
 				<active>1</active>
 				<title>Siirto</title>
@@ -55,7 +79,8 @@
 				<payment_action>Sale</payment_action>
 				<model>Visma\VismaPay\Model\VismaPaySiirto</model>
 				<min_order_total>0.01</min_order_total>
-				<sort_order>116</sort_order>
+				<sort_order>117</sort_order>
+				<group>vismapay</group>
 			</visma_pay_siirto>
 			<visma_pay_aktia>
 				<active>1</active>
@@ -65,6 +90,7 @@
 				<model>Visma\VismaPay\Model\VismaPayAktia</model>
 				<sort_order>103</sort_order>
 				<min_order_total>0.01</min_order_total>
+				<group>vismapay</group>
 			</visma_pay_aktia>
 			<visma_pay_danskebank>
 				<active>1</active>
@@ -74,6 +100,7 @@
 				<model>Visma\VismaPay\Model\VismaPayDanskebank</model>
 				<min_order_total>0.01</min_order_total>
 				<sort_order>104</sort_order>
+				<group>vismapay</group>
 			</visma_pay_danskebank>
 			<visma_pay_handelsbanken>
 				<active>1</active>
@@ -83,6 +110,7 @@
 				<model>Visma\VismaPay\Model\VismaPayHandelsbanken</model>
 				<sort_order>105</sort_order>
 				<min_order_total>0.01</min_order_total>
+				<group>vismapay</group>
 			</visma_pay_handelsbanken>
 			<visma_pay_nordea>
 				<active>1</active>
@@ -92,6 +120,7 @@
 				<model>Visma\VismaPay\Model\VismaPayNordea</model>
 				<sort_order>102</sort_order>
 				<min_order_total>0.01</min_order_total>
+				<group>vismapay</group>
 			</visma_pay_nordea>
 			<visma_pay_omasaastopankki>
 				<active>1</active>
@@ -101,6 +130,7 @@
 				<model>Visma\VismaPay\Model\VismaPayOmasaastopankki</model>
 				<sort_order>106</sort_order>
 				<min_order_total>0.01</min_order_total>
+				<group>vismapay</group>
 			</visma_pay_omasaastopankki>
 			<visma_pay_osuuspankki>
 				<active>1</active>
@@ -110,6 +140,7 @@
 				<model>Visma\VismaPay\Model\VismaPayOsuuspankki</model>
 				<sort_order>101</sort_order>
 				<min_order_total>0.01</min_order_total>
+				<group>vismapay</group>
 			</visma_pay_osuuspankki>
 			<visma_pay_paikallisosuuspankki>
 				<active>1</active>
@@ -119,6 +150,7 @@
 				<model>Visma\VismaPay\Model\VismaPayPoppankki</model>
 				<sort_order>107</sort_order>
 				<min_order_total>0.01</min_order_total>
+				<group>vismapay</group>
 			</visma_pay_paikallisosuuspankki>
 			<visma_pay_saastopankki>
 				<active>1</active>
@@ -128,6 +160,7 @@
 				<model>Visma\VismaPay\Model\VismaPaySaastopankki</model>
 				<sort_order>108</sort_order>
 				<min_order_total>0.01</min_order_total>
+				<group>vismapay</group>
 			</visma_pay_saastopankki>
 			<visma_pay_spankki>
 				<active>1</active>
@@ -137,6 +170,7 @@
 				<model>Visma\VismaPay\Model\VismaPaySpankki</model>
 				<sort_order>109</sort_order>
 				<min_order_total>0.01</min_order_total>
+				<group>vismapay</group>
 			</visma_pay_spankki>
 			<visma_pay_alandsbanken>
 				<active>1</active>
@@ -146,6 +180,7 @@
 				<model>Visma\VismaPay\Model\VismaPayAlandsbanken</model>
 				<sort_order>110</sort_order>
 				<min_order_total>0.01</min_order_total>
+				<group>vismapay</group>
 			</visma_pay_alandsbanken>
 			<visma_pay_nordeab2b>
 				<active>1</active>
@@ -155,6 +190,7 @@
 				<model>Visma\VismaPay\Model\VismaPayNordeab2b</model>
 				<sort_order>111</sort_order>
 				<min_order_total>0.01</min_order_total>
+				<group>vismapay</group>
 			</visma_pay_nordeab2b>
 			<visma_pay_danskebankb2b>
 				<active>1</active>
@@ -164,6 +200,7 @@
 				<model>Visma\VismaPay\Model\VismaPayDanskebankb2b</model>
 				<sort_order>111</sort_order>
 				<min_order_total>0.01</min_order_total>
+				<group>vismapay</group>
 			</visma_pay_danskebankb2b>
 			<visma_pay_oplasku>
 				<active>1</active>
@@ -174,16 +211,8 @@
 				<sort_order>118</sort_order>
 				<min_order_total>0.01</min_order_total>
 				<max_order_total>5000.00</max_order_total>
+				<group>vismapay</group>
 			</visma_pay_oplasku>
-			<visma_pay_fellowfinance>
-				<active>1</active>
-				<title>Alisa Lasku</title>
-				<order_status>pending_payment</order_status>
-				<payment_action>Sale</payment_action>
-				<model>Visma\VismaPay\Model\VismaPayFellowfinance</model>
-				<min_order_total>0.01</min_order_total>
-				<sort_order>119</sort_order>
-			</visma_pay_fellowfinance>
 		</payment>
 	</default>
 </config>

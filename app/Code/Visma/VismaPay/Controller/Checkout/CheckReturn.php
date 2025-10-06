@@ -102,7 +102,7 @@ class CheckReturn extends \Magento\Framework\App\Action\Action
 				{
 					$this->getResponse()->setRedirect(
 						$this->_model->getSuccessUrl()
-						);
+					);
 				}
 				else
 					echo "OK";          
@@ -117,8 +117,12 @@ class CheckReturn extends \Magento\Framework\App\Action\Action
 						$comment = __('Payment canceled');
 					}
 					else
+					{
 						$comment = __('Visma Pay - Order is in wrong state.');
+					}
+
 					$this->_messageManager->addNotice($comment);
+
 					$this->getResponse()->setRedirect(
 						$this->_model->getFailureUrl()
 					);
@@ -183,23 +187,29 @@ class CheckReturn extends \Magento\Framework\App\Action\Action
 	{
 		$vp_order_number = $order->getPayment()->getAdditionalInformation('vp_order_id');
 		$payment = $order->getPayment();
+		$baseAmount = $order->getBaseGrandTotal();
+
 		if ($settled == 1)
 		{
-			$comment = __("Payment authorized and settled. Visma Pay order number %1", $vp_order_number) .'.'. PHP_EOL;
-			$comment .= $this->vp_extra_info;
-			$payment->setPreparedMessage($comment);
+			$payment->setTransactionId($vp_order_number . '-auth-capture')->setIsTransactionClosed(1);
 			$payment->setAdditionalInformation('settled', 1);
-			$payment->capture();
+			$payment->registerCaptureNotification($baseAmount);
+			$comment = __("Payment authorized and settled (captured). Visma Pay order number %1", $vp_order_number) .'.'. PHP_EOL;
+			$comment .= $this->vp_extra_info;
+			$order->addStatusHistoryComment($comment);
 		}
 		else if($settled == 0)
 		{
-			$comment = __("Payment authorized. Settle the payment in Visma Pay merchant portal. Visma Pay order number %1", $vp_order_number) .'.'. PHP_EOL;
-			$comment .= $this->vp_extra_info;
-			$payment->setPreparedMessage($comment);
+			$payment->setTransactionId($vp_order_number . '-auth')->setIsTransactionClosed(0);
 			$payment->setAdditionalInformation('settled', 0);
-			$payment->authorize($payment, $order->getBaseGrandTotal());
+			$payment->registerAuthorizationNotification($baseAmount);
+			$comment = __("Payment authorized. Settle (capture) the payment manually. Visma Pay order number %1", $vp_order_number) .'.'. PHP_EOL;
+			$comment .= $this->vp_extra_info;
+			$order->addStatusHistoryComment($comment);
 		}
-		
+
+		$order->save();
+
 		try
 		{
 			$this->_orderSender->send($order);
@@ -207,8 +217,6 @@ class CheckReturn extends \Magento\Framework\App\Action\Action
 		catch(Exception $e)
 		{
 		}
-
-		$order->save();
 
 		if ($notify == 0)
 		{
@@ -218,7 +226,6 @@ class CheckReturn extends \Magento\Framework\App\Action\Action
 		}
 		else
 			echo "OK";
-		
 	}
 
 	private function review($order)

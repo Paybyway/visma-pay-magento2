@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<payment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Payment:etc/payment.xsd">
+	<groups>
+		<group id="vismapay">
+			<label>Visma Pay</label>
+		</group>
+	</groups>
+	<methods>
+		<method name="visma_pay_creditcards">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_mobilepay">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_applepay">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_googlepay">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_klarna">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_siirto">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_aktia">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_danskebank">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_handelsbanken">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_nordea">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_omasaastopankki">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_osuuspankki">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_paikallisosuuspankki">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_saastopankki">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_spankki">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_alandsbanken">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_nordeab2b">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_danskebankb2b">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+		<method name="visma_pay_oplasku">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
+	</methods>
+</payment>

@@ -82,7 +82,6 @@ public function __construct(
 		$wallet_payments = $this->_scopeConfig->getValue('payment/visma_pay/wallet_payments', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
 		$invoice_methods = array(
-			'visma_pay_fellowfinance',
 			'visma_pay_oplasku'
 		);
 		
@@ -103,7 +102,9 @@ public function __construct(
 		
 		$wallet_methods = array(
 			'visma_pay_mobilepay',
-			'visma_pay_masterpass',
+			'visma_pay_applepay',
+			'visma_pay_googlepay',
+			'visma_pay_klarna',
 			'visma_pay_siirto'
 		);
 
@@ -582,6 +583,78 @@ public function curl($url, $ctype, $posts, &$error = null)
 	return $curl_response;
 }
 
+public function capture(\Magento\Payment\Model\InfoInterface $payment, $amount)
+{
+	$order = $payment->getOrder();
+	$vpOrderNumber = $payment->getAdditionalInformation('vp_order_id');
 
+	if(!$vpOrderNumber)
+	{
+		throw new \Magento\Framework\Exception\LocalizedException(
+			__('No order id found.')
+		);
+	}
+
+	$orderTotal = $order->getBaseGrandTotal();
+	
+	if(round($amount, 2) != round($orderTotal, 2))
+	{
+		throw new \Magento\Framework\Exception\LocalizedException(
+			__('Partial capture is not supported.')
+		); 
+	}
+
+	$apiKey = $this->_scopeConfig->getValue(
+		'payment/visma_pay/api_key', \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+	);
+	
+	$privateKey = $this->_scopeConfig->getValue(
+		'payment/visma_pay/private_key', \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+	);
+
+	$authcode = strtoupper(hash_hmac('sha256', $apiKey . '|' . $vpOrderNumber, $privateKey));
+
+	$data = [
+		'version' => 'w3.2',
+		'api_key' => $apiKey,
+		'order_number' => $vpOrderNumber,
+		'authcode' => $authcode,
+	];
+
+	$curlError = '';
+	
+	$response = json_decode($this->curl(
+		$this->config->getCaptureUrl(),
+		['Content-Type: application/json'],
+		json_encode($data),
+		$curlError
+	));
+
+	if(!isset($response->result) || $response->result !== 0)
+	{
+		$order->addStatusHistoryComment(
+			__('Settle (capture) failed. Check transaction from Merchant Portal. (Visma Pay order number: %1)', $vpOrderNumber)
+		);
+
+		$order->save();
+		throw new \Magento\Framework\Exception\LocalizedException(
+			__('Capture failed.')
+		);
+	}
+
+	$vpCaptureId = $vpOrderNumber . '-capture';
+
+	$payment->setTransactionId($vpCaptureId)
+		->setIsTransactionClosed(true)
+		->setAdditionalInformation('settled', 1);
+
+	$order->addStatusHistoryComment(
+		__('Payment settled via Visma Pay (Capture ID: %1)', $vpCaptureId)
+	);
+
+	$order->save();
+
+	return $this;
+}
 
 }

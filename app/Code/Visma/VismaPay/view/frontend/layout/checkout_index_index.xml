@@ -63,13 +63,16 @@
 																		<item name="visma_pay_mobilepay" xsi:type="array">
 																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
 																		</item>
-																		<item name="visma_pay_masterpass" xsi:type="array">
+																		<item name="visma_pay_applepay" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_googlepay" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																		<item name="visma_pay_klarna" xsi:type="array">
 																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
 																		</item>
 																		<item name="visma_pay_siirto" xsi:type="array">
-																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
-																		</item>
-																		<item name="visma_pay_fellowfinance" xsi:type="array">
 																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
 																		</item>
 																		<item name="visma_pay_oplasku" xsi:type="array">
