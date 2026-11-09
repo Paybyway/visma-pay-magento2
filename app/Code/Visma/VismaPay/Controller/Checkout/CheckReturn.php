@@ -48,6 +48,9 @@ class CheckReturn extends \Magento\Framework\App\Action\Action
 
 		$merchantPrivateKey = $this->_model->getConfigData('private_key');
 
+		if (empty($merchantPrivateKey) || !is_string($orderNumber) || !is_string($authCode))
+			exit();
+
 		$authCodeConfirm = $returnCode.'|'.$orderNumber;
 
 		if(isset($content['SETTLED']))
@@ -58,9 +61,20 @@ class CheckReturn extends \Magento\Framework\App\Action\Action
 			$authCodeConfirm .= '|'. $content['INCIDENT_ID'];
 
 		$authCodeConfirm = strtoupper(hash_hmac('sha256', $authCodeConfirm, $merchantPrivateKey));
+
+		if (!hash_equals($authCodeConfirm, $authCode))
+			exit();
+
 		if (isset($orderIncrementId) && $orderIncrementId !== "")
 		{
+			if (!is_string($orderIncrementId) || !preg_match('/^(.+_)?' . preg_quote($orderIncrementId, '/') . '_\d+$/', $orderNumber))
+				exit();
+
 			$order = $this->visma_pay_get_order_by_increment($orderIncrementId);
+
+			if (!$order || !$order->getId())
+				exit();
+
 			$vp_order_number = $order->getPayment()->getAdditionalInformation('vp_order_id');
 
 			if ($orderNumber != $vp_order_number) {
@@ -69,29 +83,24 @@ class CheckReturn extends \Magento\Framework\App\Action\Action
 
 			if ($order->getStatus() == \Magento\Sales\Model\Order::STATE_PENDING_PAYMENT) 
 			{
-				if ($authCodeConfirm == $authCode)
-				{
-					$this->statusCheck($order);
-					switch ($returnCode) {
-						case 0:
-							$this->success($order, $settled, $notify);
-							break;
-						case 1:
-							$this->cancel($order, $returnCode, $notify);            
-							break;
-						case 4:
-							$this->review($order); 
-							break;
-						case 10:
-							$this->cancel($order, $returnCode, $notify);
-							break;
-						default:
-							$this->cancel($order, $returnCode, $notify);         
-							break;
-					}
-				} 
-				else
-					$this->cancel($order, $returnCode, $notify, __("Response MAC code not matching."));
+				$this->statusCheck($order);
+				switch ($returnCode) {
+					case 0:
+						$this->success($order, $settled, $notify);
+						break;
+					case 1:
+						$this->cancel($order, $returnCode, $notify);            
+						break;
+					case 4:
+						$this->review($order); 
+						break;
+					case 10:
+						$this->cancel($order, $returnCode, $notify);
+						break;
+					default:
+						$this->cancel($order, $returnCode, $notify);         
+						break;
+				}
 			}
 
 
@@ -214,7 +223,7 @@ class CheckReturn extends \Magento\Framework\App\Action\Action
 		{
 			$this->_orderSender->send($order);
 		}
-		catch(Exception $e)
+		catch(\Exception $e)
 		{
 		}
 
@@ -339,7 +348,6 @@ class CheckReturn extends \Magento\Framework\App\Action\Action
 
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $posts);
 		$curl_response = curl_exec ($ch);
-		curl_close ($ch);
 		return $curl_response;
 	}
 

@@ -64,5 +64,8 @@
 		<method name="visma_pay_oplasku">
 			<allow_multiple_address>0</allow_multiple_address>
 		</method>
+		<method name="visma_pay_twob2binvoice">
+			<allow_multiple_address>0</allow_multiple_address>
+		</method>
 	</methods>
 </payment>

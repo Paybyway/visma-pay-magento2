@@ -34,7 +34,8 @@ define(
 				{type: 'visma_pay_googlepay', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
 				{type: 'visma_pay_siirto', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
 				{type: 'visma_pay_klarna', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
-				{type: 'visma_pay_oplasku', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'}
+				{type: 'visma_pay_oplasku', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'},
+				{type: 'visma_pay_twob2binvoice', component: 'Visma_VismaPay/js/view/payment/method-renderer/visma_pay-method'}
 				);
 		}
 		else

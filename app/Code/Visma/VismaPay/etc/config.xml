@@ -213,6 +213,16 @@
 				<max_order_total>5000.00</max_order_total>
 				<group>vismapay</group>
 			</visma_pay_oplasku>
+			<visma_pay_twob2binvoice>
+				<active>1</active>
+				<title>Two</title>
+				<order_status>pending_payment</order_status>
+				<payment_action>Sale</payment_action>
+				<model>Visma\VismaPay\Model\VismaPayTwoB2bInvoice</model>
+				<sort_order>119</sort_order>
+				<min_order_total>0.01</min_order_total>
+				<group>vismapay</group>
+			</visma_pay_twob2binvoice>
 		</payment>
 	</default>
 </config>

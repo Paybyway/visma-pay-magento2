@@ -45,8 +45,8 @@ public function __construct(
 	\Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
 	\Magento\Payment\Model\Method\Logger $logger,
 	\Magento\Checkout\Model\Session $checkoutSession,
-	\Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
-	\Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+	?\Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+	?\Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
 	array $data = []
 	) 
 {
@@ -82,7 +82,8 @@ public function __construct(
 		$wallet_payments = $this->_scopeConfig->getValue('payment/visma_pay/wallet_payments', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
 		$invoice_methods = array(
-			'visma_pay_oplasku'
+			'visma_pay_oplasku',
+			'visma_pay_twob2binvoice'
 		);
 		
 		$bank_methods = array(
@@ -177,6 +178,10 @@ public function getPaymentMethodsForCurrency($currency)
 {
 	$api_key = $this->_scopeConfig->getValue('payment/visma_pay/api_key', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 	$private_key = $this->_scopeConfig->getValue('payment/visma_pay/private_key', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+
+	if (empty($api_key) || empty($private_key))
+		return array("result" => false);
+
 	$data = array(
 		'version' => "2",
 		'api_key' => $api_key,
@@ -470,7 +475,7 @@ public function getCheckoutUrl($order, $storeId = null)
 			'shipping_firstname' => $customer_shipping_data->getFirstname(),
 			'shipping_lastname' => $customer_shipping_data->getLastname(), 
 			'shipping_email' => $customer_shipping_data->getEmail(),
-			'shipping_address_street' => $customer_shipping_data->getStreet1(),
+			'shipping_address_street' => $customer_shipping_data->getStreetLine(1),
 			'shipping_address_city' => $customer_shipping_data->getCity(),
 			'shipping_address_zip' => $customer_shipping_data->getPostcode(),
 			'shipping_address_zip' => $customer_shipping_data->getPostcode(),
@@ -579,7 +584,6 @@ public function curl($url, $ctype, $posts, &$error = null)
 	if(!$curl_response)
 		$error = curl_error($ch) . ' (error code: ' . curl_errno($ch) . ')';
 
-	curl_close ($ch);
 	return $curl_response;
 }
 
